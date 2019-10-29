@@ -20,7 +20,7 @@ namespace ConsoleApp1
         private float deltaTime = 0.005f;
         
         //This list is used for keeping track of everything in the scene and makes it easy to run everything 
-        //through for loops.
+        //through foreach loops.
         List<SceneObject> Hierarchy = new List<SceneObject>();
 
         SceneObject tankObject = new SceneObject();
@@ -31,15 +31,14 @@ namespace ConsoleApp1
         SpriteObject turretSprite = new SpriteObject();
         SpriteObject shellSprite = new SpriteObject();
 
-        //Timer idkWhereThisIsUsed = new Timer();
-
+        //Sets up the dimensions of the player's hitbox, then sets them in an array for access later.
         MathHelpers.AABB playerCollider = new MathHelpers.AABB(new MathHelpers.Vector3(0,0,0), new MathHelpers.Vector3(0,0,0));
         SceneObject[] playerCorners = new SceneObject[4]
         {
             new SceneObject(), new SceneObject(), new SceneObject(), new SceneObject()
         };
-        MathHelpers.Vector3[] pCA = new MathHelpers.Vector3[4];
          
+        //The color and dimensions of the green box's hitbox, the box itself is drawn in Draw.
         Color boxColor = Color.GREEN;
         MathHelpers.AABB boxCollider = new MathHelpers.AABB(new MathHelpers.Vector3(300, 300, 0), new MathHelpers.Vector3(400, 400, 0));
 
@@ -135,6 +134,7 @@ namespace ConsoleApp1
             }
             #endregion Movement
 
+            //Spawns a projectile that moves in the direction the barrel was pointed when pressed.
             if (IsKeyPressed(KeyboardKey.KEY_SPACE))
             {
                 Projectile shell = new Projectile(turretObject.GlobalTransform.m5, -turretObject.GlobalTransform.m4);
@@ -148,11 +148,14 @@ namespace ConsoleApp1
                 //tankObject.Translate(facing.x, facing.y);
             }
 
+            //Checks to see if the player's collider interacts with the green box.
             if (boxCollider.Overlaps(playerCollider))
                 boxColor = Color.DARKGREEN;
             else
                 boxColor = Color.GREEN;
 
+            //Goes through the children of shellObject and checks their lifespans. 
+            //If they expire they are removed from the shellObject.
             for (int i = 0; i < shellObject.GetChildCount(); i++)
             {
                 if(shellObject.GetChild(i).proDel)
@@ -161,9 +164,13 @@ namespace ConsoleApp1
 
                 }
             }
+
             for (int i = 0; i < shellObject.GetChildCount(); i++)
             {
                 Projectile tShell = (Projectile)shellObject.GetChild(i);
+
+                //If the green box isn't currently overlapping with the player
+                //it will check if it's overlapping with a projectile; if it is, it will turn red.
                 if (!boxCollider.Overlaps(playerCollider))
                 {
                     if(tShell.projectileCollider.Overlaps(boxCollider))
@@ -179,18 +186,16 @@ namespace ConsoleApp1
             }
 
             tankObject.UpdateTransform();
-            //tankObject.Update(deltaTime);
-
 
             //Moves the collider in tandem with the tank by "resizing" it to the current dimensions 
             //(and by extent, the position) of the player.
             playerCollider.Resize(new MathHelpers.Vector3(tankObject.GlobalTransform.m7 - (tankSprite.Width / 2), tankObject.GlobalTransform.m8 - (tankSprite.Height / 2), 0),
                                   new MathHelpers.Vector3(tankObject.GlobalTransform.m7 + (tankSprite.Width / 2), tankObject.GlobalTransform.m8 + (tankSprite.Height / 2), 0));
-            //DrawRectangle(90, 90, 90, 10, Color.RED);
+
             Vector2 v2 = new Vector2(900, 24);
-            //DrawLineStrip(ref v2, 255, Color.VIOLET);
             lastTime = currentTime;
 
+            //
             foreach (SceneObject i in Hierarchy)
             {
                 i.Update(deltaTime);
@@ -209,9 +214,10 @@ namespace ConsoleApp1
             //MathHelpers.AABB boxCollider = new MathHelpers.AABB(new MathHelpers.Vector3(120, 120, 0), new MathHelpers.Vector3(200, 200, 0));
             //boxCollider.Corners();
 
+            //The green box's sprite.
             DrawRectangle(300, 300, 100, 100, boxColor);
 
-
+            //Goes through the Hierarchy and draws each sceneobject.
             foreach (SceneObject i in Hierarchy)
             {
                 i.Draw();

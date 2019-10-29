@@ -1168,6 +1168,7 @@ namespace MathHelpers
 
     }
     
+    //This class handles everything pertaining to AABB.
     public class AABB
     {
         Vector3 min = new Vector3(float.NegativeInfinity, float.NegativeInfinity, float.NegativeInfinity);
@@ -1177,11 +1178,15 @@ namespace MathHelpers
         {
 
         }
+
+        //Sets the dimensions of the AABB.
         public AABB(Vector3 min, Vector3 max)
         {
             this.min = min;
             this.max = max;
         }
+
+        //Resizes the AABB, specifically used for updating the players hitbox as it moves.
         public void Resize(Vector3 min, Vector3 max)
         {
             this.min = min;
@@ -1226,7 +1231,7 @@ namespace MathHelpers
             return !(p.x < min.x || p.y < min.y || p.x > max.x || p.y > max.y);
 
         }
-
+        
         public bool Overlaps(AABB other)
         {
             return !(max.x < other.min.x || max.y < other.min.y || min.x > other.max.x || min.y > other.max.y);
@@ -1239,20 +1244,23 @@ namespace MathHelpers
         }
     }
 
-    public class Sphere
+    public class Circle
     {
         public Vector3 center;
         public float radius;
-        public Sphere()
+        public Circle()
         {
 
         }
-        public Sphere(Vector3 p, float r)
+
+        //Sets the dimensions of the circle.
+        public Circle(Vector3 p, float r)
         {
             this.center = p;
             this.radius = r;
         }
 
+        //Resizes the circle, allows it to move.
         public void Resize(Vector3 c, float r)
         {
             this.center = c;
@@ -1265,7 +1273,7 @@ namespace MathHelpers
             return toPoint.MagnitudeSqr() <= (radius * radius);
 
         }
-        public bool Overlaps(Sphere other)
+        public bool Overlaps(Circle other)
         {
             Vector3 diff = other.center - center;
             float f = radius + other.radius;
@@ -1273,7 +1281,7 @@ namespace MathHelpers
 
         }
 
-        //Checks for an overlapping boundary between a projectile and its environment.
+        //Checks for an overlapping boundary between a Circle and an AABB.
         public bool Overlaps(AABB aabb)
         {
             Vector3 diff = aabb.ClosestPoint(center) - center;
@@ -1320,7 +1328,7 @@ namespace MathHelpers
             return origin + direction * t;
 
         }
-        public bool Intersects(Sphere sp, Vector3 I = null)
+        public bool Intersects(Circle sp, Vector3 I = null)
         {
             Vector3 L = sp.center - origin;
 

@@ -71,7 +71,7 @@ namespace ConsoleApp1
     class Projectile : SpriteObject
     {
         MathHelpers.Vector3 direction = new MathHelpers.Vector3(0, 0, 0);
-        public Sphere projectileCollider = new Sphere(new MathHelpers.Vector3(0, 0, 0), 0);
+        public Circle projectileCollider = new Circle(new MathHelpers.Vector3(0, 0, 0), 0);
 
         //lifetime and speed are pretty self explanitory; lifetime is how long the projectile is active,
         //and the speed is how fast the projectile moves.
