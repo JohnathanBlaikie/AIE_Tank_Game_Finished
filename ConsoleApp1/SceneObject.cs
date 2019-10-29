@@ -158,7 +158,6 @@ namespace ConsoleApp1
             {
                 child.Draw();
             }
-            //TODO: Figure out how to differentiate the barrel from the tank body in the OnDraw override.
         }
         
     }

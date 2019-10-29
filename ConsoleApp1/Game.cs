@@ -18,7 +18,9 @@ namespace ConsoleApp1
         private int frames;
 
         private float deltaTime = 0.005f;
-
+        
+        //This list is used for keeping track of everything in the scene and makes it easy to run everything 
+        //through for loops.
         List<SceneObject> Hierarchy = new List<SceneObject>();
 
         SceneObject tankObject = new SceneObject();
@@ -29,7 +31,7 @@ namespace ConsoleApp1
         SpriteObject turretSprite = new SpriteObject();
         SpriteObject shellSprite = new SpriteObject();
 
-        Timer bruh = new Timer();
+        //Timer idkWhereThisIsUsed = new Timer();
 
         MathHelpers.AABB playerCollider = new MathHelpers.AABB(new MathHelpers.Vector3(0,0,0), new MathHelpers.Vector3(0,0,0));
         SceneObject[] playerCorners = new SceneObject[4]
@@ -37,7 +39,7 @@ namespace ConsoleApp1
             new SceneObject(), new SceneObject(), new SceneObject(), new SceneObject()
         };
         MathHelpers.Vector3[] pCA = new MathHelpers.Vector3[4];
-
+         
         Color boxColor = Color.GREEN;
         MathHelpers.AABB boxCollider = new MathHelpers.AABB(new MathHelpers.Vector3(300, 300, 0), new MathHelpers.Vector3(400, 400, 0));
 
@@ -61,12 +63,12 @@ namespace ConsoleApp1
             //turretSprite.SetPosition(turretSprite.Width / 2.0f, 0);
             turretSprite.SetPosition(25, 0);
 
-            shellSprite.Load("TankGameshell.png");
+            shellSprite.Load("TankGameShell.png");
 
 
             turretObject.AddChild(turretSprite);
             tankObject.AddChild(tankSprite);
-            tankObject.AddChild(turretObject); // TODO: put this back
+            tankObject.AddChild(turretObject);
 
             tankObject.SetPosition(GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f);
 
@@ -180,7 +182,7 @@ namespace ConsoleApp1
             //tankObject.Update(deltaTime);
 
             
-
+            //Moves the collider in tandem with the tank by "resizing" it to 
             playerCollider.Resize(new MathHelpers.Vector3(tankObject.GlobalTransform.m7 - (tankSprite.Width / 2), tankObject.GlobalTransform.m8 - (tankSprite.Height / 2), 0),
                                   new MathHelpers.Vector3(tankObject.GlobalTransform.m7 + (tankSprite.Width / 2), tankObject.GlobalTransform.m8 + (tankSprite.Height / 2), 0));
             //DrawRectangle(90, 90, 90, 10, Color.RED);

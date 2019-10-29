@@ -9,12 +9,11 @@ using System.Diagnostics;
 
 namespace ConsoleApp1
 {
+    //Derivative of SceneObject that loads, scales, and draws sprites.
     class SpriteObject : SceneObject
     {
         public Texture2D texture = new Texture2D();
        
-        // TODO: add member for configurable origin/pivot point
-
         public float Width
         {
             get { return texture.width; }
@@ -67,13 +66,18 @@ namespace ConsoleApp1
         }
        
     }
+    
+    //Derivative of SpriteObject that handles the projectiles.
     class Projectile : SpriteObject
     {
         MathHelpers.Vector3 direction = new MathHelpers.Vector3(0, 0, 0);
         public Sphere projectileCollider = new Sphere(new MathHelpers.Vector3(0, 0, 0), 0);
 
+        //lifetime and speed are pretty self explanitory; lifetime is how long the projectile is active,
+        //and the speed is how fast the projectile moves.
         float lifetime = 5;
-        float speed = 100f;
+        float speed = 300f;
+
         public Projectile(MathHelpers.Vector3 d)
         {
             direction = d;
@@ -82,9 +86,11 @@ namespace ConsoleApp1
         {
             direction.x = x;
             direction.y = y;
-            //texture = LoadTexture("TankGameShell.png");
-
         }
+        
+       
+        // Moves the tank shell and deletes it after it excedes its lifetime
+        /// <param name="deltaTime"></param>
         public override void OnUpdate(float deltaTime)
         {
             lifetime -= 1 * deltaTime;
@@ -98,14 +104,12 @@ namespace ConsoleApp1
             Translate(facing.x, facing.y);
 
         }
+
+        // Draws a black circle when shot.
         public override void OnDraw()
         {
-            //DrawTextureEx(Shell, ((int)projectileCollider.x,(int)projectileCollider.y) )
-
-            DrawCircle((int)projectileCollider.center.x, (int)projectileCollider.center.y, (int)projectileCollider.radius, Color.BLACK);
-            //Console.WriteLine("Shell Shot");
-
             //Todo: comment this out and scale the missile
+            DrawCircle((int)projectileCollider.center.x, (int)projectileCollider.center.y, (int)projectileCollider.radius, Color.BLACK);
         }
     }
 }
