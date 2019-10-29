@@ -4,6 +4,8 @@ using System.Text;
 
 namespace MathHelpers
 {
+    //Largely a paste from the math exam solution, 
+    //with the exception of Matrix3 and the complete reworking it had to go through.
     public class Vector2
     {
         public float x, y;
@@ -299,6 +301,8 @@ namespace MathHelpers
 
     #region Matrix3
     #region Teacher Code
+
+    //Although my Matrix3 code passed the math exams, it somehow refuses to work in this solution.
     public class Matrix3
     {
         public float m1, m2, m3, m4, m5, m6, m7, m8, m9;
@@ -1248,6 +1252,7 @@ namespace MathHelpers
             this.center = p;
             this.radius = r;
         }
+
         public void Resize(Vector3 c, float r)
         {
             this.center = c;
@@ -1267,6 +1272,8 @@ namespace MathHelpers
             return diff.MagnitudeSqr() <= (radius * radius);
 
         }
+
+        //Checks for an overlapping boundary between a projectile and its environment.
         public bool Overlaps(AABB aabb)
         {
             Vector3 diff = aabb.ClosestPoint(center) - center;

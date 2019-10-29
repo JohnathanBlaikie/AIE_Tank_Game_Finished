@@ -181,8 +181,9 @@ namespace ConsoleApp1
             tankObject.UpdateTransform();
             //tankObject.Update(deltaTime);
 
-            
-            //Moves the collider in tandem with the tank by "resizing" it to 
+
+            //Moves the collider in tandem with the tank by "resizing" it to the current dimensions 
+            //(and by extent, the position) of the player.
             playerCollider.Resize(new MathHelpers.Vector3(tankObject.GlobalTransform.m7 - (tankSprite.Width / 2), tankObject.GlobalTransform.m8 - (tankSprite.Height / 2), 0),
                                   new MathHelpers.Vector3(tankObject.GlobalTransform.m7 + (tankSprite.Width / 2), tankObject.GlobalTransform.m8 + (tankSprite.Height / 2), 0));
             //DrawRectangle(90, 90, 90, 10, Color.RED);
