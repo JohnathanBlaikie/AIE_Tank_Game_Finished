@@ -1,0 +1,7 @@
+C:\Users\frien_000\source\repos\BinaryExercises\BinaryExercises\bin\Debug\BinaryExercises.exe.config
+C:\Users\frien_000\source\repos\BinaryExercises\BinaryExercises\bin\Debug\BinaryExercises.exe
+C:\Users\frien_000\source\repos\BinaryExercises\BinaryExercises\bin\Debug\BinaryExercises.pdb
+C:\Users\frien_000\source\repos\BinaryExercises\BinaryExercises\obj\Debug\BinaryExercises.csprojResolveAssemblyReference.cache
+C:\Users\frien_000\source\repos\BinaryExercises\BinaryExercises\obj\Debug\BinaryExercises.csproj.CoreCompileInputs.cache
+C:\Users\frien_000\source\repos\BinaryExercises\BinaryExercises\obj\Debug\BinaryExercises.exe
+C:\Users\frien_000\source\repos\BinaryExercises\BinaryExercises\obj\Debug\BinaryExercises.pdb
