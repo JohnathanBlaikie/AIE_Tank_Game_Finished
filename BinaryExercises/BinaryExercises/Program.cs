@@ -21,68 +21,72 @@ namespace BinaryExercises
 
         static void Main(string[] args)
         {
-
-            Console.WriteLine("Hello! Please Select an Exercise:\n[1] Doom Inventory" +
-                "\n[2] Decimal to Binary Conversion\n[3] Binary to Decimal Conversion");
-            int.TryParse(Console.ReadLine(), out int listInt);
-            if (listInt == 1)
+            bool mainLoop = true;
+            while (mainLoop)
             {
-                Console.ReadKey();
-                bool loop = true;
-                while (loop)
+                Console.Clear();
+                Console.WriteLine("Hello! Please Select an Exercise:\n[1] Doom Inventory" +
+                    "\n[2] Decimal to Binary Conversion\n[3] Binary to Decimal Conversion");
+                int.TryParse(Console.ReadLine(), out int listInt);
+                if (listInt == 1)
                 {
-                    byte inventory = 0;
-                    inventory |= PLASMA_GUN;
-                    inventory |= PISTOL;
-                    inventory |= CHAINSAW;
-
-                    inventory ^= BFG9000;
-
-                    PrintInventory(inventory);
-                    Console.ReadLine();
-                }
-            }
-            else if (listInt == 2)
-            {
-                bool loop = true;
-                while (loop)
-                {
-                    Console.WriteLine("Please Enter a Number:");
-                    int binNum;
-                    int.TryParse(Console.ReadLine(), out binNum);
-                    string binFin = Convert.ToString(binNum, 2);
-                    Console.WriteLine(binFin);
-                    Console.WriteLine("\nWould you Like to try another number? [Y] / [N]");
-                    char.TryParse((Console.ReadLine()), out char temp);
-                    char.ToLower(temp);
-                    if (temp == 'n')
+                    Console.ReadKey();
+                    bool loop = true;
+                    while (loop)
                     {
-                        loop = false;
-                    }
-                    else { }
+                        byte inventory = 0;
+                        inventory |= PLASMA_GUN;
+                        inventory |= PISTOL;
+                        inventory |= CHAINSAW;
 
+                        inventory ^= BFG9000;
+
+                        PrintInventory(inventory);
+                        Console.ReadLine();
+                    }
                 }
-            }
-            else if (listInt == 3)
-            {
-                bool loop = true;
-                while (loop)
+                else if (listInt == 2)
                 {
-                    Console.WriteLine("Please Enter a Number:");
-                    int binNum;
-                    int.TryParse(Console.ReadLine(), out binNum);
-                    string nuBinNum = Convert.ToString(binNum);
-                    string binFin = Convert.ToInt32(nuBinNum, 2).ToString();
-                    Console.WriteLine(binFin);
-                    Console.WriteLine("\nWould you Like to try another number? [Y] / [N]");
-                    char.TryParse((Console.ReadLine()), out char temp);
-                    char.ToLower(temp);
-                    if (temp == 'n')
+                    bool loop = true;
+                    while (loop)
                     {
-                        loop = false;
-                    }
-                    else { }
+                        Console.WriteLine("Please Enter a Number:");
+                        int binNum;
+                        int.TryParse(Console.ReadLine(), out binNum);
+                        string binFin = Convert.ToString(binNum, 2);
+                        Console.WriteLine(binFin);
+                        Console.WriteLine("\nWould you Like to try another number? [Y] / [N]");
+                        char.TryParse((Console.ReadLine()), out char temp);
+                        char.ToLower(temp);
+                        if (temp == 'n')
+                        {
+                            loop = false;
+                        }
+                        else { }
 
+                    }
+                }
+                else if (listInt == 3)
+                {
+                    bool loop = true;
+                    while (loop)
+                    {
+                        Console.WriteLine("Please Enter a Number:");
+                        int binNum;
+                        int.TryParse(Console.ReadLine(), out binNum);
+                        string nuBinNum = Convert.ToString(binNum);
+                        string binFin = Convert.ToInt32(nuBinNum, 2).ToString();
+                        Console.WriteLine(binFin);
+                        Console.WriteLine("\nWould you Like to try another number? [Y] / [N]");
+                        char.TryParse((Console.ReadLine()), out char temp);
+                        char.ToLower(temp);
+                        if (temp == 'n')
+                        {
+                            loop = false;
+                        }
+                        else { }
+
+                    }
                 }
             }
         }
