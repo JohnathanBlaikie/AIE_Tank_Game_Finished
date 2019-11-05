@@ -30,11 +30,12 @@ namespace BinaryExercises
                 int.TryParse(Console.ReadLine(), out int listInt);
                 if (listInt == 1)
                 {
+                    byte inventory = 0;
                     Console.ReadKey();
                     bool loop = true;
                     while (loop)
                     {
-                        byte inventory = 0;
+                        
                         inventory |= PLASMA_GUN;
                         inventory |= PISTOL;
                         inventory |= CHAINSAW;
